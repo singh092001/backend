@@ -76,9 +76,9 @@ const postRouter=express.Router();
             return res.status(400).json({ error: "Missing postID in the request body" });
         }
 
-        const updatedPost = await postModel.findByIdAndUpdate(postID, {status:!true});
+        const updatedPost = await postModel.findByIdAndUpdate(postID, {status:true});
 
-        if (!deletedPost) {
+        if (!updatedPost) {
             return res.status(404).json({ error: "Post not found" });
         }
 
