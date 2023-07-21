@@ -67,5 +67,25 @@ const postRouter=express.Router();
         res.status(500).json({ error: error.message });
         }
     });
+
+    postRouter.patch("/patch/:postID",async (req, res) => {
+        try {
+        const {postID}  = req.params;
+
+        if (!postID) {
+            return res.status(400).json({ error: "Missing postID in the request body" });
+        }
+
+        const updatedPost = await postModel.findByIdAndUpdate(postID, {status:!true});
+
+        if (!deletedPost) {
+            return res.status(404).json({ error: "Post not found" });
+        }
+
+        res.status(200).json({ msg: "Post Updated successfully",});
+        } catch (error) {
+        res.status(500).json({ error: error.message });
+        }
+    });
   
 module.exports={postRouter}
