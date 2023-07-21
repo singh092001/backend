@@ -13,7 +13,7 @@ const postSchema = mongoose.Schema({
     userID:{type:String},
     userName:{type:String},
     user_location:{type:String},
-    // status:{type:Boolean},
+    status:{type:Boolean, default:false},
     // time:{type:String}
 
 }, {versionKey:false})
