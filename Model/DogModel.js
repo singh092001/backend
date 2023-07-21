@@ -3,13 +3,13 @@ const mongoose = require('mongoose');
 // Define the schema
 const DogsSchema = mongoose.Schema({
   id: { type: Number },
-  image: { type: String, required: true },
-  name: { type: String, required: true },
-  age: { type: String, required: true },
-  breed: { type: String, required: true },
-  distance: { type: String, required: true },
-  location: { type: String, required: true },
-  price: { type: Number, required: true }
+  image: { type: String, },
+  name: { type: String, },
+  age: { type: String, },
+  breed: { type: String, },
+  distance: { type: String, },
+  location: { type: String, },
+  price: { type: Number, }
 });
 
 // Create the model
