@@ -48,7 +48,7 @@ const postRouter=express.Router();
         }
     });
 
-    postRouter.delete("/delete/:postID", userAuth,async (req, res) => {
+    postRouter.delete("/delete/:postID",async (req, res) => {
         try {
         const {postID}  = req.params;
 
