@@ -36,16 +36,11 @@ dogsRoute.get("/get", async (req, res) => {
         sort = { [sortBy]: sortOrder === "asc" ? 1 : -1 };
       }
   
-      // Calculate skip and limit for pagination
-      const pageNumber = parseInt(page) || 1;
-      const pageSize = parseInt(limit) || 10;
-      const skip = (pageNumber - 1) * pageSize;
+      
   
       // Fetch dogs data with applied filters, sort, and pagination
       const dogsData = await DogsModel.find(filter)
         .sort(sort)
-        .skip(skip)
-        .limit(pageSize);
   
       // Calculate total count of dogs matching the filters
       const totalDogsCount = await DogsModel.countDocuments(filter);

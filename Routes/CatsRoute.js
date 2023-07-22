@@ -31,15 +31,10 @@ catsRoute.get("/get", async (req, res) => {
           if (sortBy && sortOrder) {
             sort = { [sortBy]: sortOrder === "asc" ? 1 : -1 };
           }
-
-          const pageNumber = parseInt(page) || 1;
-          const pageSize = parseInt(limit) || 10;
-          const skip = (pageNumber - 1) * pageSize;    
+  
 
         const catsData = await CatsModel.find(filter)
         .sort(sort)
-        .skip(skip)
-        .limit(pageSize);
 
         const totalCatsCount = await CatsModel.countDocuments(filter);
   
