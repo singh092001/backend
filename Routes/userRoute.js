@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const DogsModel = require('../Model/DogModel');
 const BlockModel = require('../Model/BlockModel');
+const { userAuth } = require('../Middlewares/user.auth');
 
 const userRoute = express.Router()
 
@@ -78,6 +79,30 @@ userRoute.post("/login", async(req,res)=>{
         res.status(500).json({error:"Internal Server Error"})
     }
 
+})
+
+
+userRoute.patch("/patch",userAuth, async(req,res)=>{
+    try {
+
+        const { userID } = req.body;
+
+        const {name,location,email,gender} = req.body
+
+        const obj = {
+            name:name,
+            location:location,
+            email:email,
+            gender:gender
+        }
+
+        const users = await UserModel.findByIdAndUpdate(userID,obj )
+
+        res.json({users:users, message:"Account Details Updated"})
+        
+    } catch (error) {
+        res.status(500).json({error:"Internal Server Error"})
+    }
 })
 
 
