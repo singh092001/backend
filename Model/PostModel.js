@@ -5,7 +5,7 @@ const postSchema = mongoose.Schema({
 
     pet_name:{type:String},
     pet_breed:{type:String},
-    pet_age:{type:Number},
+    pet_age:{type:Number||String},
     pet_location:{type:String},
     pet_image:{type:String},
     pet_price:{type:String},
