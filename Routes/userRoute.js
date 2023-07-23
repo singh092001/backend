@@ -70,7 +70,7 @@ userRoute.post("/login", async(req,res)=>{
 
             const token = jwt.sign({ userID : user._id, userName : user.name ,userLocation:user.location}, "1234")
 
-            res.json({message:"User Successfully Logged In", token:token})
+            res.json({message:"User Successfully Logged In", token:token, userName:user.name})
 
         });
         
