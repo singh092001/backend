@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const UserModel = require('../Model/UserModel');
 const BlockModel = require('../Model/BlockModel');
 const postModel = require('../Model/PostModel');
+const { userAuth } = require('../Middlewares/user.auth');
 
 
 const adminRoute = express.Router()
@@ -30,6 +31,22 @@ adminRoute.get("/users", async(req,res)=>{
     try {
 
         const users = await UserModel.find()
+
+        res.json({users:users})
+        
+    } catch (error) {
+        res.status(500).json({error:"Internal Server Error"})
+    }
+
+})
+adminRoute.get("/users/get",userAuth, async(req,res)=>{
+
+    try {
+
+        const { userID } = req.body;
+
+
+        const users = await UserModel.findById(userID)
 
         res.json({users:users})
         
