@@ -5,7 +5,7 @@ const catsRoute = express.Router()
 
 catsRoute.get("/get", async (req, res) => {
     try {
-        const { q, cat_name, age, breed, sortBy, sortOrder, page, limit } = req.query;
+        const { q, cat_name, age, gender, sortBy, sortOrder, page, limit } = req.query;
     
         const filter = {};
   
@@ -13,7 +13,7 @@ catsRoute.get("/get", async (req, res) => {
         if (q) {
           filter.$or = [
             { cat_name: { $regex: q, $options: "i" } },
-            { breed: { $regex: q, $options: "i" } },
+            { gender: { $regex: q, $options: "i" } },
           ];
         }
 
@@ -23,8 +23,8 @@ catsRoute.get("/get", async (req, res) => {
           if (age) {
             filter.age = age;
           }
-          if (breed) {
-            filter.breed = { $regex: breed, $options: "i" };
+          if (gender) {
+            filter.gender = { $regex: gender, $options: "i" };
           }
 
           let sort = {};
