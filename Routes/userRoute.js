@@ -63,15 +63,17 @@ userRoute.post("/login", async(req,res)=>{
             return res.status(402).json({error:"User Does Not Exist"})
         }
 
+        // console.log(user)
+
         bcrypt.compare(password, user.password, function(err, result) {
             
             if(!result){
                 return res.status(403).json({error:"Invalid Password"})
             }
 
-            const token = jwt.sign({ userID : user._id, userName : user.name ,userLocation:user.location}, "1234")
+            const token = jwt.sign({ userID : user._id, userName : user.name ,userLocation:user.location, userEmail: user.email}, "1234")
 
-            res.json({message:"User Successfully Logged In", token:token, userName:user.name})
+            res.json({message:"User Successfully Logged In", token:token, userName:user.name, userEmail:user.email})
 
         });
         
