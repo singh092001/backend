@@ -23,7 +23,7 @@ const postRouter=express.Router();
             const userpost= postModel(obje);
             await userpost.save()
 
-            res.status(200).json({msg:"Pet Added successfully",userpost})
+            res.status(200).json({msg:"Pet Added successfully",userpost:userpost})
         
 
         } catch (error) {
